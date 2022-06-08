@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block modul_menu %}
+  {% include 'crm/includes/crm_menu.html' %}
+{% endblock %}
+{% block content %}
+  <h1>Создать задачу</h1>
+  <br><br>
+  <form action="{% url 'crm:crm_task_create' type_class pk  %}" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Создать</button>
+  </form>
+  <br>
+  <a href="{% url 'crm:crm_task_type' %}">Создать тип</a>
+  <br><br><br>
+  <a href="{% url 'crm:crm_lead_list' %}">Назад</a><br>
+{% endblock %}

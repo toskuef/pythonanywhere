@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block modul_menu %}
+  {% include 'crm/includes/crm_menu.html' %}
+{% endblock %}
+{% block content %}
+  <h1>Создать заказ</h1>
+  <br><br>
+  <form action="{% url 'crm:crm_order_create' %}" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Создать</button>
+  </form>
+  <br>
+  <a href="{% url 'crm:crm_order_status' %}">Создать статус</a>
+  <br><br><br>
+{% endblock %}

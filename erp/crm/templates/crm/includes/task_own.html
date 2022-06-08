@@ -1,0 +1,19 @@
+{% for status in task_status_list %}
+        <div class="col" style="margin: 10px">
+          {{ status.status }}
+          {% for elem in task_list %}
+            {% if elem.status == status %}
+              <div>
+                <a class="card text-decoration-none"
+                   style="border: black solid;
+                   background: antiquewhite;
+                   margin: 10px;"
+                   href="{% url 'crm:crm_task_detail' elem.pk %}">
+                  Тип задачи: {{ elem.type_task.type_task }}<br>
+                  Описание: {{ elem.text }}<br>
+                  Статус: {{ elem.status.status }}</a>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endfor %}

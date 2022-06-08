@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block modul_menu %}
+  {% include 'crm/includes/crm_menu.html' %}
+{% endblock %}
+{% block content %}
+  <h1>Задачи</h1>
+  <br><br><br>
+  <div class="container-fluid">
+    <div class="row">
+      {% for status in status_list %}
+        <div class="col" style="margin: 10px">
+          {{ status.status }}
+          {% for elem in object_list %}
+            {% if elem.status == status %}
+              <div>
+                <a class="card text-decoration-none"
+                   style="border: black solid;
+                   background: antiquewhite;
+                   margin: 10px;"
+                   href="{% url 'crm:crm_task_detail' elem.pk %}">
+                  Тип задачи: {{ elem.type_task.type_task }}<br>
+                  Описание: {{ elem.text }}<br>
+                  Статус: {{ elem.status.status }}</a>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <br>
+  <a href="{% url 'crm:crm_main' %}">Вернуться в выбору блока</a>
+{% endblock %}

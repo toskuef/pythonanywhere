@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block modul_menu %}
+  {% include 'crm/includes/crm_menu.html' %}
+{% endblock %}
+{% block content %}
+  <div class="row">
+  <div class="col-5">
+  <h1>{{ object.sur_name }} {{ object.first_name }} {{ object.mid_name }}</h1>
+  <br><br><br>
+  <a href="{% url 'crm:crm_customer_update' object.pk %}">Изменить заказ</a>
+  <br>
+  {{ object.phone }}<br>
+  {{ object.status.status }}<br>
+  {{ object.address.count }}<br>
+  <br>
+    </div>
+    <div class="col-7">
+      <div class="row">
+  <a href="{% url 'crm:crm_task_create' 'customer' object.pk %}">
+    Создать задачу
+  </a><br>
+        </div>
+    <div class="row">
+    {% include 'crm/includes/task_own.html' %}
+    </div>
+      </div>
+  </div>
+{% endblock %}

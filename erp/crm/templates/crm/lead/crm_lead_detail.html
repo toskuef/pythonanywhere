@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block modul_menu %}
+  {% include 'crm/includes/crm_menu.html' %}
+{% endblock %}
+{% block content %}
+  <div class="row">
+  <div class="col-5">
+  <h1>Лиды</h1>
+  <br><br><br>
+  <a href="{% url 'crm:crm_lead_update' object.pk %}">Изменить лид</a>
+  <br>
+  {{ object.title }}<br>
+  {{ object.status }}<br>
+  {{ object.pk }}<br>
+  <br>
+    </div>
+    <div class="col-7">
+      <div class="row">
+  <a href="{% url 'crm:crm_task_create' 'lead' object.pk %}">
+    Создать задачу
+  </a><br>
+        </div>
+    <div class="row">
+    {% include 'crm/includes/task_own.html' %}
+    </div>
+      </div>
+  </div>
+{% endblock %}

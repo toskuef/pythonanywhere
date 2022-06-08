@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block modul_menu %}
+  {% include 'crm/includes/crm_menu.html' %}
+{% endblock %}
+{% block content %}
+  <form action="{% url 'crm:crm_customer_update' object.pk %}" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Изменить</button>
+  </form>
+  <br><br><br>
+{% endblock %}

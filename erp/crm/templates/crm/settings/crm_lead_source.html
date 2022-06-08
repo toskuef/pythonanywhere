@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block modul_menu %}
+  {% include 'crm/includes/crm_menu.html' %}
+{% endblock %}
+{% block content %}
+  <h1>Создать источник</h1>
+  <br><br>
+  <form action="{% url 'crm:crm_lead_source' %}" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Создать</button>
+  </form>
+  <br><br><br>
+  <a href="{% url 'crm:crm_lead_create' %}">Назад</a><br>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block modul_menu %}
+  {% include 'crm/includes/crm_menu.html' %}
+{% endblock %}
+{% block content %}
+  <div class="row">
+    <div class="col-5">
+      <h1>Задача</h1>
+      <br><br><br>
+      <a href="#">Приступить к выполнению</a><br><br>
+      {{ object.type_task.type_task }}<br>
+      {{ object.text }}<br>
+      {{ object.status.status }}<br>
+      <br>  <br>  <br>
+
+
+      {% if object.lead %}
+        Связанный лид: <a href="{% url 'crm:crm_lead_detail' object.lead.pk %}">{{ object.lead.title }}</a>
+      {% elif object.task %}
+        Связанная задача: <a href="{% url 'crm:crm_task_detail' object.task.pk %}">{{ object.task.text }}</a>
+      {% elif object.order %}
+        Связанный заказ: <a href="{% url 'crm:crm_order_detail' object.order.pk %}">{{ object.order.title }}</a>
+      {% elif object.customer %}
+        Связанный клиент: <a href="{% url 'crm:crm_customer_detail' object.customer.pk %}">{{ object.customer.sur_name }}</a>
+      {% elif object.deal %}
+        Связанная сделка: <a href="{% url 'crm:crm_deal_detail' object.deal.pk %}">{{ object.deal.title }}</a>
+      {% endif %}
+    </div>
+    <div class="col-7">
+      <div class="row">
+        <br><br>
+        <a href="{% url 'crm:crm_task_create' 'task' object.pk %}">
+          Создать задачу
+        </a><br>
+      </div>
+      <div class="row">
+        {% include 'crm/includes/task_own.html' %}
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

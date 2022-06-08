@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block modul_menu %}
+  {% include 'crm/includes/crm_menu.html' %}
+{% endblock %}
+{% block content %}
+  <h1>Клиенты</h1>
+  <br><br><br>
+  <a href="{% url 'crm:crm_customer_create' %}">Создать клиента</a>
+  <br>
+  <div class="container-fluid">
+    <div class="row">
+
+        <div class="col-6" style="margin: 10px">
+
+          {% for elem in object_list %}
+
+              <div>
+                <a class="card text-decoration-none"
+                   style="border: black solid;
+                   background: antiquewhite;
+                   margin: 10px;"
+                   href="{% url 'crm:crm_customer_detail' elem.pk %}">
+                  Фамилия: {{ elem.sur_name }}<br>
+                  Имммя: {{ elem.first_name }}<br>
+                  Отчество: {{ elem.mid_name }}<br>
+                  Телефон: {{ elem.phone }}<br>
+                </a>
+              </div>
+
+          {% endfor %}
+        </div>
+
+    </div>
+  </div>
+  <br>
+{% endblock %}
