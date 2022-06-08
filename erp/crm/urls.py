@@ -78,4 +78,7 @@ urlpatterns = [
     path('deal/<int:pk>/edit',
          views.CrmDealUpdate.as_view(),
          name='crm_deal_update'),
+
+    path('vk/',
+         views.vk),
 ]

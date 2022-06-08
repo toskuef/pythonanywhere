@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView, DetailView, UpdateView
 
@@ -185,3 +186,7 @@ class CrmDealUpdate(UpdateView):
     model = CrmDeal
     template_name = 'crm/deal/crm_deal_upd.html'
     fields = ['title', 'status']
+
+
+def vk(request):
+    return HttpResponse('39c7902f')
