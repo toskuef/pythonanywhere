@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, CreateView, DetailView, UpdateView
 
 from .forms import CrmLeadForm, CrmTaskForm, CrmOrderForm, CrmCustomerForm, \
@@ -188,5 +189,7 @@ class CrmDealUpdate(UpdateView):
     fields = ['title', 'status']
 
 
+@csrf_exempt
 def vk(request):
-    return HttpResponse('39c7902f')
+    if request.method == 'POST':
+        return HttpResponse(request)
