@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'channels',
+    
     'main.apps.MainConfig',
     'crm.apps.CrmConfig',
 ]
@@ -76,7 +78,15 @@ TEMPLATES = [
     },
 ]
 
+ASGI_APPLICATION = 'erp.asgi.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
+}
 WSGI_APPLICATION = 'erp.wsgi.application'
+
+
 
 
 # Database

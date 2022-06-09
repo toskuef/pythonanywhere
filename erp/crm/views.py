@@ -1,6 +1,9 @@
+import json
+
+from asgiref.sync import async_to_sync
+from channels.layers import get_channel_layer
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
-from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render
 from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from django.views.decorators.csrf import csrf_exempt
 from .forms import CrmLeadForm, CrmTaskForm, CrmOrderForm, CrmCustomerForm, \
@@ -192,4 +195,12 @@ class CrmDealUpdate(UpdateView):
 @csrf_exempt
 def vk(request):
     if request.method == 'POST':
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.group_send)(
+            'test',
+            {
+                'type': 'chat_message',
+                'message': f'Новое сообщение {str(json.loads(request.body))}'
+            }
+        )
         return HttpResponse('ok')
